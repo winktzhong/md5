@@ -1,11 +1,15 @@
+SOURCES=main.c md5anim.c md5model.c md5lex.c geometry/quat.c geometry/v3.c
+HEADERS=       md5anim.h md5model.h md5lex.h geometry/quat.h geometry/v3.h
+
+PKG=gl glew allegro-5.0
+CFLAGS=-g -ansi -Wall -O3 -funroll-loops -c \
+	   -Igeometry `pkg-config --cflags $(PKG)`
+LDFLAGS=-O3
+LDLIBS=-lm `pkg-config --libs $(PKG)`
+
 CC=gcc
-CFLAGS=-g -ansi -Wall -O2 -funroll-loops -c
-LDFLAGS=-O2
-LDLIBS=-lm
-SOURCES=main.c md5.c geometry.c
-HEADERS=geometry.h
 OBJECTS=$(addsuffix .o, $(basename ${SOURCES}))
-EXECUTABLE=md5
+EXECUTABLE=main
 
 all: $(EXECUTABLE)
 
